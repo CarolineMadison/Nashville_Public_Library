@@ -1,0 +1,5 @@
+libraryenv/
+
+.DS_Store
+
+requirements.txt
