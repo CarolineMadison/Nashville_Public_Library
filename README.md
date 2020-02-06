@@ -4,4 +4,4 @@ The purpose of this application is to allow librarians to manage the books in th
 
 *Database Structure*
 
-![]()
+![](/libraryproject/images/database_structure.png)
