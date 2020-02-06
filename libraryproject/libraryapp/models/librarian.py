@@ -1,3 +1,4 @@
+# Since the librarian is the main user of the system, you are going to leverage the built-in user management packages that Django provides out of the box.
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
@@ -5,6 +6,7 @@ from django.dispatch import receiver
 from .library import Library
 
 class Librarian(models.Model):
+    # on_delete=models.CASCADE will delete a librarian and all associated books with that librarian. Domino effect.
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     location = models.ForeignKey(
         Library, related_name="librarians",

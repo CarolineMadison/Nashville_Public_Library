@@ -8,6 +8,7 @@
 # This import is needed for Python classes that are modeling a database table. (NSS, Chapter Documentation)
 from django.db import models
 from .library import Library
+from .librarian import Librarian
 
 class Book(models.Model):
 
@@ -16,7 +17,8 @@ class Book(models.Model):
     author = models.IntegerField(max_length=50)
     year_published = models.IntegerField(max_length=50)
     location = models.ForeignKey(Library, on_delete=models.CASCADE)
- 
+    librarian = models.ForeignKey(Librarian, on_delete=models.CASCADE)
+
     class Meta:
         verbose_name = _("")
         verbose_name_plural = _("s")
