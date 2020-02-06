@@ -4,4 +4,4 @@
 
 *Database Structure*
 
-![](/libraryproject/images/database_structure.png)
+![](/libraryproject/images/ERD.png)
