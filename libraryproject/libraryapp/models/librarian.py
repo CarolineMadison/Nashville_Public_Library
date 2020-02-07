@@ -6,6 +6,7 @@ from django.dispatch import receiver
 from .library import Library
 
 class Librarian(models.Model):
+    
     # on_delete=models.CASCADE will delete a librarian and all associated books with that librarian. Domino effect.
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     location = models.ForeignKey(
