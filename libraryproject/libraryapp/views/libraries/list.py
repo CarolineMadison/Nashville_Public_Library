@@ -2,12 +2,13 @@ import sqlite3
 from django.shortcuts import render
 from libraryapp.models import Library
 from ..connection import Connection
+from libraryapp.models import model_factory
 
 def library_list(request):
     if request.method == 'GET':
         with sqlite3.connect(Connection.db_path) as conn:
             
-            conn.row_factory = sqlite3.Row
+            conn.row_factory = model_factory(Library)
             db_cursor = conn.cursor()
 
             db_cursor.execute("""
@@ -24,17 +25,17 @@ def library_list(request):
 
             # LIST is a collection which is ordered and changeable. Allows duplicate members. Brackets. (W3 Schools)
 
-            all_libraries = []
-            dataset = db_cursor.fetchall()
+            all_libraries = db_cursor.fetchall()
 
-            for row in dataset:
-                # creating an instance of a library with Library()
-                library = Library()
-                library.id = row['id']
-                library.title = row['title']
-                library.address = row['address']
+            # code commented out because model_factor(Library) does this
+            # for row in dataset:
+            #     # creating an instance of a library with Library()
+            #     library = Library()
+            #     library.id = row['id']
+            #     library.title = row['title']
+            #     library.address = row['address']
 
-                all_libraries.append(library)
+            #     all_libraries.append(library)
 
         # When a view wants to generate some HTML representations of data, it needs to specify a template to use. [Below], the template variable is holding the path and filename of the template. (Nashville Software School, Ch 3 Documentation)
 

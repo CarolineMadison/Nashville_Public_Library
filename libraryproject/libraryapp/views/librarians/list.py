@@ -2,6 +2,7 @@ import sqlite3
 from django.shortcuts import render
 from libraryapp.models import Librarian
 from ..connection import Connection
+from libraryapp.models import model_factory
 
 def librarian_list(request):
     if request.method == 'GET':
