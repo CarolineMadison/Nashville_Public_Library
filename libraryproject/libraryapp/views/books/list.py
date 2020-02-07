@@ -2,12 +2,13 @@ import sqlite3
 from django.shortcuts import render
 from libraryapp.models import Book
 from ..connection import Connection
+from libraryapp.models import model_factory
 
 def book_list(request):
     if request.method == 'GET':
         with sqlite3.connect(Connection.db_path) as conn:
             
-            conn.row_factory = sqlite3.Row
+            conn.row_factory =  model_factory(Book)
             db_cursor = conn.cursor()
 
             db_cursor.execute("""
@@ -28,21 +29,22 @@ def book_list(request):
 
             # LIST is a collection which is ordered and changeable. Allows duplicate members. Brackets. (W3 Schools)
 
-            all_books = []
-            dataset = db_cursor.fetchall()
+            # all_books = []
+            all_books = db_cursor.fetchall()
 
-            for row in dataset:
-                # creating an instance of a book with Book()
-                book = Book()
-                book.id = row['id']
-                book.title = row['title']
-                book.isbn_number = row['isbn_number']
-                book.author = row['author']
-                book.year_published = row['year_published']
-                book.librarian_id = row['librarian_id']
-                book.location_id = row['location_id']
+            # commented out code because model_factory(Book) takes care of this
+            # for row in dataset:
+            #     # creating an instance of a book with Book()
+            #     book = Book()
+            #     book.id = row['id']
+            #     book.title = row['title']
+            #     book.isbn_number = row['isbn_number']
+            #     book.author = row['author']
+            #     book.year_published = row['year_published']
+            #     book.librarian_id = row['librarian_id']
+            #     book.location_id = row['location_id']
 
-                all_books.append(book)
+                # all_books.append(book)
 
         # When a view wants to generate some HTML representations of data, it needs to specify a template to use. [Below], the template variable is holding the path and filename of the template. (Nashville Software School, Ch 3 Documentation)
 
