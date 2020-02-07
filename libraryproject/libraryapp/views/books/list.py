@@ -7,7 +7,7 @@ from ..connection import Connection
 def book_list(request):
     if request.method == 'GET':
         with sqlite3.connect(Connection.db_path) as conn:
-            # sqlite3.Row allows developers to access columns in each row in the dataset by the column name instead of by index in the tuple. (Nashville Software School, Ch. Documentation)
+            
             conn.row_factory = sqlite3.Row
             db_cursor = conn.cursor()
 
