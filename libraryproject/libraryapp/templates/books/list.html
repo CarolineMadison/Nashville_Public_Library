@@ -1,0 +1,23 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Library</title>
+  </head>
+  <body>
+    <h1>Books</h1>
+    {% comment %} the key name all_books below comes from the context object (dictionary) in views/books/list.py {% endcomment %}
+    <ol>
+    {% comment %} for loops and if statements, wrap in {% %}  {% endcomment %}
+    {% for book in all_books %}
+        <li>
+            {% comment %} wrap interpolations in {{ }} {% endcomment %}
+            {{ book.title }}
+            by {{book.author}}
+            published in {{book.year_published}}
+        </li>
+    {% endfor %}
+    </ol>
+  </body>
+</html>
