@@ -6,7 +6,8 @@ from .views import *
 app_name = "libraryapp"
 
 urlpatterns = [
-    path('', book_list, name='home'),
+    path('', home, name='home'),
+    # path('', book_list, name='home'),
     path('books/', book_list, name='books'),
     path('librarians/', librarian_list, name='librarians'),
     path('libraries/', library_list, name="libraries"),
