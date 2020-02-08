@@ -3,7 +3,9 @@ from django.shortcuts import render
 from libraryapp.models import Book
 from ..connection import Connection
 from libraryapp.models import model_factory
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def book_list(request):
     if request.method == 'GET':
         with sqlite3.connect(Connection.db_path) as conn:
