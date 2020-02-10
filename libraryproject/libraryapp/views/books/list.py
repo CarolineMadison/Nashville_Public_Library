@@ -70,7 +70,7 @@ def book_list(request):
             INSERT INTO libraryapp_book
             (
                 title, author, isbn_number,
-                year_published, location_id, librarian_id
+                year_published, librarian_id, location_id
             )
             VALUES (?, ?, ?, ?, ?, ?)
             """,
