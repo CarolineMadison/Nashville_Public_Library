@@ -14,11 +14,17 @@ def library_list(request):
             db_cursor = conn.cursor()
 
             db_cursor.execute("""
-            select
-                l.id,
-                l.title,
-                l.address 
-            from libraryapp_library l
+                SELECT
+                    li.id,
+                    li.title,
+                    li.address,
+                    b.id book_id,
+                    b.title book_title,
+                    b.author,
+                    b.year_published,
+                    b.isbn_number
+                FROM libraryapp_library li
+                JOIN libraryapp_book b ON li.id = b.location_id
             """)
 
             # When you instruct the sqlite3 package to fetchall(), it takes your SQL string and walks over to the database and executes it. It then takes all of the rows that the database generates, and creates a tuple out of each one. It then puts all of those tuples into a list. (Chapter Documentation, NSS)
