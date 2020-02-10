@@ -1,11 +1,5 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Bangazon</title>
-  </head>
-  <body>
+{% extends 'shared/base.html' %}
+  {% block content %}
     <h1>Open A Library Location</h1>
 
 
@@ -22,5 +16,4 @@
     {% comment %} When the user fills out the form and clicks the submit button, the browser will collect all the values of the form and submit a POST request to a URL. You must then handle that request [in views/books/list.py] and create a book. (NSS Ch5 Documentation) {% endcomment %}
       <input type="submit" value="Add It" />
     </form>
-  </body>
-</html>
+  {% endblock %}

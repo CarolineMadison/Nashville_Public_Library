@@ -1,11 +1,5 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Library</title>
-  </head>
-  <body>
+{% extends 'shared/base.html' %}
+  {% block content %}
     <h1>Librarians</h1>
 
     <ol>
@@ -13,5 +7,4 @@
         <li><a href="{% url 'libraryapp:librarian' librarian.id %}"> {{ librarian.first_name }} {{ librarian.last_name }} </a></li>
     {% endfor %}
     </ol>
-  </body>
-</html>
+  {% endblock %}

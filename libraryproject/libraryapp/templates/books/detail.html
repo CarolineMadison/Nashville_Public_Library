@@ -1,11 +1,5 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Library</title>
-  </head>
-  <body>
+{% extends 'shared/base.html' %}
+  {% block content %}
     <h1>{{ book.title }}</h1>
     <h2>By {{ book.author }}</h2>
 
@@ -21,5 +15,4 @@
       {% comment %} <input type="hidden" name="actual_method" value="GET"> {% endcomment %}
       <button>Edit</button>
     </form>
-  </body>
-</html>
+  {% endblock %}
