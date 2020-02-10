@@ -1,5 +1,5 @@
 import sqlite3
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse
 from libraryapp.models import Library
 from ..connection import Connection
 from libraryapp.models import model_factory
@@ -50,3 +50,21 @@ def library_list(request):
         }
         # Then the render() method is invoked. That method takes the HTTP request as the first argument, the template to be used as the second argument, and then a dictionary containing the data to be used in the template. (Nashville Software School, Ch 3 Documentation)
         return render(request, template, context)
+
+    elif request.method == 'POST':
+        form_data = request.POST
+
+        with sqlite3.connect(Connection.db_path) as conn:
+            db_cursor = conn.cursor()
+
+            db_cursor.execute("""
+            INSERT INTO libraryapp_library
+            (
+                title, address
+            )
+            VALUES (?, ?)
+            """,
+            (form_data['title'], form_data['address']))
+
+        return redirect(reverse('libraryapp:libraries'))
+    
