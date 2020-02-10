@@ -13,7 +13,7 @@
     {% for library in all_libraries %}
         <li>
             {% comment %} wrap interpolations in {{ }} {% endcomment %}
-            {{ library.title }}
+            <a href="{% url 'libraryapp:library' library.id %}" > {{ library.title }} </a>
             is located at {{ library.address }}
         </li>
     {% endfor %}
