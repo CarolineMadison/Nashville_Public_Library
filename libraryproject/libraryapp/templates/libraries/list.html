@@ -1,15 +1,23 @@
 {% extends 'shared/base.html' %}
-  {% block content %}
+
+{% block content %}
     <h1>Libraries</h1>
-    {% comment %} the key name all_books below comes from the context object (dictionary) in views/books/list.py {% endcomment %}
+
+    <a href="{% url 'libraryapp:library_form' %}">Add Library</a>
+
     <ol>
-    {% comment %} for loops and if statements, wrap in {% %}  {% endcomment %}
     {% for library in all_libraries %}
         <li>
-            {% comment %} wrap interpolations in {{ }} {% endcomment %}
-            <a href="{% url 'libraryapp:library' library.id %}" > {{ library.title }} </a>
-            is located at {{ library.address }}
+            <a href="{% url 'libraryapp:library' library.id %}">
+                {{ library.title }}
+            </a>
+            ({{ library.address }})
+            <ul>
+            {% for book in library.books %}
+                <li>{{ book.title }}</li>
+            {% endfor %}
+            </ul>
         </li>
     {% endfor %}
     </ol>
-  {% endblock %}
+{% endblock %}
