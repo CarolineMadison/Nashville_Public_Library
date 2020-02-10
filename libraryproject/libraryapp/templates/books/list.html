@@ -1,17 +1,33 @@
 {% extends 'shared/base.html' %}
-  {% block content %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'styles/books.css' %}" />
+{% endblock %}
+
+{% block content %}
     <h1>Books</h1>
+
+    <dialog class="infoDialog">
+        <div class="infoDialog__message"></div>
+        <button class="closeDialog">Close</button>
+    </dialog>
+
     <a href="{% url 'libraryapp:book_form' %}">Add Book to Inventory</a>
-    {% comment %} the key name all_books below comes from the context object (dictionary) in views/books/list.py {% endcomment %}
-    <ol>
-    {% comment %} for loops and if statements, wrap in {% %}  {% endcomment %}
+
+    <ol class="books">
     {% for book in all_books %}
-        <li>
-            {% comment %} wrap interpolations in {{ }} {% endcomment %}
-            <a href="{% url 'libraryapp:book' book.id %}"> {{ book.title }} </a>
-            by {{book.author}}
-            published in {{book.year_published}}
+        <li class="book">
+            <a class="book__title" href="{% url 'libraryapp:book' book.id %}"> {{ book.title }}</a>
+            <div class="book__description">
+                by {{book.author}} published in {{book.year_published}}
+            </div>
+            <button id="detail--{{ book.id }}">Details</button>
         </li>
     {% endfor %}
     </ol>
-  {% endblock %}
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'scripts/books.js' %}"></script>
+{% endblock %}
