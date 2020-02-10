@@ -16,5 +16,10 @@
       <input type="hidden" name="actual_method" value="DELETE">
       <button>Delete</button>
     </form>
+    <form action="{% url 'libraryapp:book_edit_form' book.id %}" method="GET">
+      {% csrf_token %}
+      {% comment %} <input type="hidden" name="actual_method" value="GET"> {% endcomment %}
+      <button>Edit</button>
+    </form>
   </body>
 </html>
