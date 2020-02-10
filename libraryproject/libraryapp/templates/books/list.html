@@ -13,7 +13,7 @@
     {% for book in all_books %}
         <li>
             {% comment %} wrap interpolations in {{ }} {% endcomment %}
-            {{ book.title }}
+            <a href="{% url 'libraryapp:book' book.id %}"> {{ book.title }} </a>
             by {{book.author}}
             published in {{book.year_published}}
         </li>
@@ -21,5 +21,3 @@
     </ol>
   </body>
 </html>
-
-
