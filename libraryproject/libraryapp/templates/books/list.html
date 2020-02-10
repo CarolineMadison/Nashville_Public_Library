@@ -1,6 +1,7 @@
 {% extends 'shared/base.html' %}
   {% block content %}
     <h1>Books</h1>
+    <a href="{% url 'libraryapp:book_form' %}">Add Book to Inventory</a>
     {% comment %} the key name all_books below comes from the context object (dictionary) in views/books/list.py {% endcomment %}
     <ol>
     {% comment %} for loops and if statements, wrap in {% %}  {% endcomment %}
